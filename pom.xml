@@ -17,8 +17,10 @@
         <module>doutao-member</module>
         <module>doutao-order</module>
         <module>doutao-product</module>
-        <module>doutao-third-party</module>
         <module>doutao-ware</module>
+        <module>doutao-third-party</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
     </modules>
 
 </project>
