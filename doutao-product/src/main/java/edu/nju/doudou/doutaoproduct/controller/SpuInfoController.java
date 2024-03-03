@@ -5,11 +5,7 @@ import java.util.Map;
 
 import edu.nju.doudou.doutaoproduct.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.nju.doudou.doutaoproduct.entity.SpuInfoEntity;
 import edu.nju.doudou.doutaoproduct.service.SpuInfoService;
@@ -31,16 +27,25 @@ public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
 
+
+    //商品上架
+    @PostMapping(value = "/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId) {
+
+        spuInfoService.up(spuId);
+
+        return R.ok();
+    }
+
     /**
      * 列表
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = spuInfoService.queryPage(params);
+        PageUtils page = spuInfoService.queryPageByCondition(params);
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息
@@ -57,7 +62,7 @@ public class SpuInfoController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody SpuSaveVo spuSaveVo){
-		spuInfoService.saveSpuVo(spuSaveVo);
+		spuInfoService.saveSpuInfo(spuSaveVo);
 
         return R.ok();
     }

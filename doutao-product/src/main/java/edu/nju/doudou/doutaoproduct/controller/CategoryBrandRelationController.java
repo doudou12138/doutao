@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import edu.nju.doudou.doutaoproduct.entity.CategoryBrandRelationEntity;
-import edu.nju.doudou.doutaoproduct.service.CategoryBrandRelationService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.common.utils.R;
 

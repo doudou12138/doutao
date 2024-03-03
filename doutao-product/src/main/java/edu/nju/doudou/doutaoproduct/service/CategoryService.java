@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaoproduct.entity.CategoryEntity;
 import edu.nju.doudou.doutaoproduct.vo.CategoryVo;
+import edu.nju.doudou.doutaoproduct.vo.Catelog2Vo;
 
 import java.util.List;
 import java.util.Map;
@@ -36,5 +37,13 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     void updateCascade(CategoryEntity category);
 
+    /**
+     * 获取指定层级的分类
+     * @param i
+     * @return
+     */
+    List<CategoryEntity> getLevelCategorys(int i);
+
+    Map<String, List<Catelog2Vo>> getCatalogJson();
 }
 

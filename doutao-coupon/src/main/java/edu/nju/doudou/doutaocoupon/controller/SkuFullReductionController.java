@@ -3,12 +3,9 @@ package edu.nju.doudou.doutaocoupon.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import edu.nju.doudou.common.to.SkuReductionTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.nju.doudou.doutaocoupon.entity.SkuFullReductionEntity;
 import edu.nju.doudou.doutaocoupon.service.SkuFullReductionService;
@@ -29,6 +26,14 @@ import edu.nju.doudou.common.utils.R;
 public class SkuFullReductionController {
     @Autowired
     private SkuFullReductionService skuFullReductionService;
+
+
+    @PostMapping("/saveinfo")
+    public R saveInfo(@RequestBody SkuReductionTo reductionTo){
+
+        skuFullReductionService.saveSkuReduction(reductionTo);
+        return R.ok();
+    }
 
     /**
      * 列表

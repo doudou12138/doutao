@@ -5,13 +5,15 @@ package edu.nju.doudou.common.exception;
  * 1. 错误码定义规则为5为数字
  * 2. 前两位表示业务场景，最后三位表示错误码。例如：100001。10:通用 001:系统未知异常
  */
-public enum BizCodeEnume {
+public enum BizCodeEnum {
     UNKNOW_EXCEPTION(10000,"系统未知异常"),
+    PRODUCT_UP_EXCEPTION(11000,"商品上架异常"),
     VAILD_EXCEPTION(10001,"参数格式校验失败");
+
 
     private int code;
     private String msg;
-    BizCodeEnume(int code,String msg){
+    BizCodeEnum(int code, String msg){
         this.code = code;
         this.msg = msg;
     }

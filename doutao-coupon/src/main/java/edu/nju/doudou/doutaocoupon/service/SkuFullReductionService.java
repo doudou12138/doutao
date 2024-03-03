@@ -1,6 +1,7 @@
 package edu.nju.doudou.doutaocoupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import edu.nju.doudou.common.to.SkuReductionTo;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaocoupon.entity.SkuFullReductionEntity;
 
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SkuFullReductionService extends IService<SkuFullReductionEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSkuReduction(SkuReductionTo reductionTo);
 }
 

@@ -3,7 +3,10 @@ package edu.nju.doudou.doutaoware.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaoware.entity.PurchaseEntity;
+import edu.nju.doudou.doutaoware.vo.MergeVo;
+import edu.nju.doudou.doutaoware.vo.PurchaseDoneVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +19,17 @@ import java.util.Map;
 public interface PurchaseService extends IService<PurchaseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils queryPageUnreceivePurchase(Map<String, Object> params);
+
+    void mergePurchase(MergeVo mergeVo);
+
+    void received(List<Long> ids);
+
+    /**
+     * 完成采购单
+     * @param doneVo
+     */
+    void done(PurchaseDoneVo doneVo);
 }
 

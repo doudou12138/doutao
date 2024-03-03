@@ -21,7 +21,6 @@ import edu.nju.doudou.common.utils.Query;
 
 import edu.nju.doudou.doutaoproduct.dao.CategoryBrandRelationDao;
 import edu.nju.doudou.doutaoproduct.entity.CategoryBrandRelationEntity;
-import edu.nju.doudou.doutaoproduct.service.CategoryBrandRelationService;
 
 @Service("categoryBrandRelationService")
 public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandRelationDao, CategoryBrandRelationEntity> implements CategoryBrandRelationService {

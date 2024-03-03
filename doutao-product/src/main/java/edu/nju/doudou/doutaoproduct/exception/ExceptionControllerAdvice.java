@@ -1,6 +1,6 @@
 package edu.nju.doudou.doutaoproduct.exception;
 
-import edu.nju.doudou.common.exception.BizCodeEnume;
+import edu.nju.doudou.common.exception.BizCodeEnum;
 import edu.nju.doudou.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -27,14 +27,14 @@ public class ExceptionControllerAdvice {
         bindingResult.getFieldErrors().forEach((fieldError)->{
             errorMap.put(fieldError.getField(),fieldError.getDefaultMessage());
         });
-        return R.error(BizCodeEnume.VAILD_EXCEPTION.getCode(),BizCodeEnume.VAILD_EXCEPTION.getMsg()).put("data",errorMap);
+        return R.error(BizCodeEnum.VAILD_EXCEPTION.getCode(), BizCodeEnum.VAILD_EXCEPTION.getMsg()).put("data",errorMap);
     }
 
     @ExceptionHandler(value = Throwable.class)
     public R handleException(Throwable throwable){
 
         log.error("错误：",throwable);
-        return R.error(BizCodeEnume.UNKNOW_EXCEPTION.getCode(),BizCodeEnume.UNKNOW_EXCEPTION.getMsg());
+        return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
     }
 
 }
