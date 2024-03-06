@@ -3,6 +3,7 @@ package edu.nju.doudou.doutaoproduct.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaoproduct.entity.SkuInfoEntity;
+import edu.nju.doudou.doutaoproduct.vo.SkuItemVo;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +24,12 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     PageUtils queryPageByCondition(Map<String, Object> params);
 
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
+
+    /**
+     * 根据skuId查询商品详情
+     * @param skuId
+     * @return
+     */
+    SkuItemVo item(Long skuId);
 }
 

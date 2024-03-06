@@ -5,6 +5,7 @@ import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaoproduct.entity.AttrEntity;
 import edu.nju.doudou.doutaoproduct.entity.AttrGroupEntity;
 import edu.nju.doudou.doutaoproduct.vo.AttrGroupWithAttrsVo;
+import edu.nju.doudou.doutaoproduct.vo.SpuItemAttrGroupVo;
 
 import java.util.List;
 import java.util.Map;
@@ -28,5 +29,13 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
      * @return
      */
     List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
+
+    /**
+     * 根据spuId和catalogId查询属性分组和属性
+     * @param spuId
+     * @param catalogId
+     * @return
+     */
+    List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId);
 }
 

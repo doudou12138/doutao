@@ -44,7 +44,6 @@ public class ProductSaveServiceImpl implements ProductSaveService {
             bulkRequest.add(indexRequest);
         }
 
-
         BulkResponse bulk = esRestClient.bulk(bulkRequest, ElasticSearchConfig.getCommonOptions());
 
         boolean hasFailures = bulk.hasFailures();
