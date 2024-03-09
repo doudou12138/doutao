@@ -3,6 +3,7 @@ package edu.nju.doudou.doutaoware.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.doutaoware.entity.WareInfoEntity;
+import edu.nju.doudou.doutaoware.vo.FareVo;
 
 import java.util.Map;
 
@@ -21,5 +22,12 @@ public interface WareInfoService extends IService<WareInfoEntity> {
      * @return
      */
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 根据地址id获取运费
+     * @param addrId
+     * @return
+     */
+    FareVo getFare(Long addrId);
 }
 

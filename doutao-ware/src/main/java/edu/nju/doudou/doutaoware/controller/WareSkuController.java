@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import edu.nju.doudou.common.exception.NoStockException;
 import edu.nju.doudou.common.to.SkuHasStockVo;
+import edu.nju.doudou.doutaoware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import edu.nju.doudou.doutaoware.service.WareSkuService;
 import edu.nju.doudou.common.utils.PageUtils;
 import edu.nju.doudou.common.utils.R;
 
+import static edu.nju.doudou.common.exception.BizCodeEnum.NO_STOCK_EXCEPTION;
 
 
 /**
@@ -46,7 +49,7 @@ public class WareSkuController {
             boolean lockStock = wareSkuService.orderLockStock(vo);
             return R.ok().setData(lockStock);
         } catch (NoStockException e) {
-            return R.error(NO_STOCK_EXCEPTION.getCode(),NO_STOCK_EXCEPTION.getMessage());
+            return R.error(NO_STOCK_EXCEPTION.getCode(),NO_STOCK_EXCEPTION.getMsg());
         }
     }
 

@@ -29,10 +29,10 @@ public class OAuth2Controller {
     private MemberFeignService memberFeignService;
 
     @Value("${oauth.weibo.client-id}")
-    private static final String CLIENT_ID;
+    private String CLIENT_ID;
 
     @Value("${oauth.weibo.client-secret}")
-    private static final String CLIENT_SECRET;
+    private String CLIENT_SECRET;
 
     @GetMapping(value = "/oauth2.0/weibo/success")
     public String weibo(@RequestParam("code") String code, HttpSession session) throws Exception {

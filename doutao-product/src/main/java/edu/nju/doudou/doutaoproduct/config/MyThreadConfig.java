@@ -17,9 +17,7 @@ public class MyThreadConfig {
                 pool.getMaxSize(),
                 pool.getKeepAliveTime(),
                 TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(500),
-                new Thread,
-                ThreadPoolExecutor.AbortPolicy()
+                new LinkedBlockingQueue<>(500)
         );
     }
 }

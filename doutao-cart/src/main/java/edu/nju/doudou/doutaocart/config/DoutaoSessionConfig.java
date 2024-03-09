@@ -15,7 +15,7 @@ public class DoutaoSessionConfig {
 
         //放大作用域
         cookieSerializer.setDomainName("doutao.com");
-        cookieSerializer.setCookieName("GULISESSION");
+        cookieSerializer.setCookieName("DOUTAOSESSION");
 
         return cookieSerializer;
     }

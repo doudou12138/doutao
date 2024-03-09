@@ -15,6 +15,12 @@ public interface CartService {
     CartItemVo addToCart(Long skuId, Integer num) throws ExecutionException, InterruptedException;
 
     /**
+     * 获取购物车某个购物项
+     * @param skuId
+     * @return
+     */
+
+    /**
      * 获取购物车
      * @return
      */
@@ -24,6 +30,11 @@ public interface CartService {
 
     List<CartItemVo> getUserCartItems();
 
+    /**
+     * 获取购物车某个购物项
+     * @param skuId
+     * @return
+     */
     CartItemVo getCartItem(Long skuId);
 
     void deleteIdCartInfo(Integer skuId);

@@ -53,6 +53,8 @@ public class MyRabbitConfig {
          */
         //设置确认回调
         rabbitTemplate.setConfirmCallback((correlationData,ack,cause) -> {
+
+            //服务器收到了消息
             System.out.println("confirm...correlationData["+correlationData+"]==>ack:["+ack+"]==>cause:["+cause+"]");
         });
 
