@@ -13,6 +13,7 @@ import edu.nju.doudou.doutaoorder.feign.MemberFeignService;
 import edu.nju.doudou.doutaoorder.feign.ProductFeignService;
 import edu.nju.doudou.doutaoorder.feign.WmsFeignService;
 import edu.nju.doudou.doutaoorder.interceptor.LoginInterceptor;
+import edu.nju.doudou.doutaoorder.service.OrderItemService;
 import edu.nju.doudou.doutaoorder.to.OrderCreateTo;
 import edu.nju.doudou.doutaoorder.vo.*;
 import org.slf4j.Logger;
@@ -65,6 +66,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     @Autowired
     private ProductFeignService productFeignService;
+
+    @Autowired
+    private OrderItemService orderItemService;
 
     @Autowired
     private WmsFeignService wmsFeignService;
@@ -252,14 +256,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     private void saveOrder(OrderCreateTo orderCreateTos) {
         //获取订单信息
-        OrderEntity order = orderCreateTo.getOrder();
+        OrderEntity order = orderCreateTos.getOrder();
         order.setModifyTime(new Date());
         order.setCreateTime(new Date());
         //保存订单
         this.baseMapper.insert(order);
 
         //获取订单项信息
-        List<OrderItemEntity> orderItems = orderCreateTo.getOrderItems();
+        List<OrderItemEntity> orderItems = orderCreateTos.getOrderItems();
         //批量保存订单项数据
         orderItemService.saveBatch(orderItems);
 

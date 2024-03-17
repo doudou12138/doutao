@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>谷粒商城2020</title>
+  <title>逗淘2020</title>
   <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
   <link rel="stylesheet" href="/static/index/css/GL.css">
   <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -96,17 +96,17 @@
       <ul>
         <li>
           <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
-          <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html">你好，请登录</a>
+          <a th:if="${session.loginUser == null}" href="http://auth.doutao.com/login.html">你好，请登录</a>
         </li>
         <li>
-          <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/reg.html" class="li_2">免费注册</a>
+          <a th:if="${session.loginUser == null}" href="http://auth.doutao.com/reg.html" class="li_2">免费注册</a>
         </li>
         <li>
-          <a th:if="${session.loginUser != null}" href="http://auth.gulimall.com/loguot.html" class="li_2">立即退出</a>
+          <a th:if="${session.loginUser != null}" href="http://auth.doutao.com/loguot.html" class="li_2">立即退出</a>
         </li>
         <span>|</span>
         <li>
-          <a href="http://member.gulimall.com/memberOrder.html">我的订单</a>
+          <a href="http://member.doutao.com/memberOrder.html">我的订单</a>
         </li>
 
 
@@ -124,7 +124,7 @@
     <div class="header_ico">
       <div class="header_gw">
         <img src="/static/index/img/img_15.png" />
-        <span><a href="http://cart.gulimall.com/cart.html">我的购物车</a></span>
+        <span><a href="http://cart.doutao.com/cart.html">我的购物车</a></span>
         <span>0</span>
       </div>
       <div class="header_ko">
@@ -585,10 +585,10 @@
 <script type="text/javascript">
   function search() {
     var keyword=$("#searchText").val()
-    window.location.href="http://search.gulimall.com/list.html?keyword="+keyword;
+    window.location.href="http://search.doutao.com/list.html?keyword="+keyword;
   }
 
-  $.get("http://seckill.gulimall.com/getCurrentSeckillSkus", function (res) {
+  $.get("http://seckill.doutao.com/getCurrentSeckillSkus", function (res) {
     if (res.data.length > 0) {
       res.data.forEach(function (item) {
         $("<li onclick='toDetail(" + item.skuId + ")'></li>").append($("<img style='width: 130px; height: 130px' src='" + item.skuInfo.skuDefaultImg + "' />"))
@@ -601,7 +601,7 @@
   })
 
   function toDetail(skuId) {
-    location.href = "http://item.gulimall.com/" + skuId + ".html";
+    location.href = "http://item.doutao.com/" + skuId + ".html";
   }
 
 </script>

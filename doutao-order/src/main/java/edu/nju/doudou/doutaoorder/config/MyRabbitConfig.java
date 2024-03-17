@@ -1,6 +1,8 @@
 package edu.nju.doudou.doutaoorder.config;
 
-import com.rabbitmq.client.ConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -10,6 +12,8 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class MyRabbitConfig {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyRabbitConfig.class);
 
     private RabbitTemplate rabbitTemplate;
 
@@ -53,9 +57,8 @@ public class MyRabbitConfig {
          */
         //设置确认回调
         rabbitTemplate.setConfirmCallback((correlationData,ack,cause) -> {
-
             //服务器收到了消息
-            System.out.println("confirm...correlationData["+correlationData+"]==>ack:["+ack+"]==>cause:["+cause+"]");
+            LOGGER.info("confirm...correlationData["+correlationData+"]==>ack:["+ack+"]==>cause:["+cause+"]");
         });
 
 
@@ -68,7 +71,7 @@ public class MyRabbitConfig {
          * routingKey：当时这个消息用哪个路邮键
          */
         rabbitTemplate.setReturnCallback((message,replyCode,replyText,exchange,routingKey) -> {
-            System.out.println("Fail Message["+message+"]==>replyCode["+replyCode+"]" +
+            LOGGER.info("Fail Message["+message+"]==>replyCode["+replyCode+"]" +
                     "==>replyText["+replyText+"]==>exchange["+exchange+"]==>routingKey["+routingKey+"]");
         });
     }

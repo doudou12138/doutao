@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 @Configuration
 public class FeignConfig {
 
+    /**
+     * 同步cookie拦截器
+     */
     @Bean("requestInterceptor")
     public RequestInterceptor requestInterceptor() {
 
