@@ -56,11 +56,6 @@ public interface MemberService extends IService<MemberEntity> {
      */
     MemberEntity login(SocialUser socialUser) throws Exception;
 
-    /**
-     * 微信登录
-     * @param accessTokenInfo
-     * @return
-     */
-    MemberEntity login(String accessTokenInfo);
+
 }
 

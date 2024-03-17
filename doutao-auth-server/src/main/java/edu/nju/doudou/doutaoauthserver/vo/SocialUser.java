@@ -9,7 +9,7 @@ public class SocialUser {
 
     private String remind_in;
 
-    private long expires_in;
+    private Long expires_in;
 
     private String uid;
 

@@ -9,7 +9,9 @@ import edu.nju.doudou.doutaoauthserver.feign.MemberFeignService;
 import edu.nju.doudou.doutaoauthserver.feign.ThirdPartFeignService;
 import edu.nju.doudou.doutaoauthserver.vo.UserLoginVo;
 import edu.nju.doudou.doutaoauthserver.vo.UserRegisterVo;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.SystemUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.validation.BindingResult;
@@ -43,7 +45,7 @@ public class LoginController {
 
     @ResponseBody
     @GetMapping(value = "/sms/sendCode")
-    public R sendCode(@RequestParam("phone") String phone) {
+    public R sendCode(@RequestParam("phone") String phone, @RequestParam("key") String key) {
 
         //1、接口防刷
         String redisCode = stringRedisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone);
@@ -54,6 +56,10 @@ public class LoginController {
                 //60s内不能再发
                 return R.error(BizCodeEnum.SMS_CODE_EXCEPTION.getCode(),BizCodeEnum.SMS_CODE_EXCEPTION.getMsg());
             }
+        }
+        //1.2 验证动态key
+        if(!key.equals(DigestUtils.md5Hex(phone+ System.currentTimeMillis()/60000))&&(!key.equals(DigestUtils.md5Hex(phone+ (System.currentTimeMillis()/60000-1))))){
+            return R.error(BizCodeEnum.SMS_CODE_EXCEPTION.getCode(), BizCodeEnum.SMS_CODE_EXCEPTION.getMsg());
         }
 
         //2、验证码的再次效验 redis.存key-phone,value-code

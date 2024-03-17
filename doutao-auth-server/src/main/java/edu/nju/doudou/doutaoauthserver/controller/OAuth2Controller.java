@@ -34,6 +34,13 @@ public class OAuth2Controller {
     @Value("${oauth.weibo.client-secret}")
     private String CLIENT_SECRET;
 
+    /**
+     * 接收微博认证成功后的回调,并带着返回的code,去交换token
+     * @param code
+     * @param session
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "/oauth2.0/weibo/success")
     public String weibo(@RequestParam("code") String code, HttpSession session) throws Exception {
 
