@@ -1,5 +1,6 @@
 package edu.nju.doudou.doutaoproduct.service.impl;
 
+import edu.nju.doudou.doutaoproduct.entity.CategoryBrandRelationEntity;
 import edu.nju.doudou.doutaoproduct.service.CategoryBrandRelationService;
 import edu.nju.doudou.doutaoproduct.vo.CategoryVo;
 import edu.nju.doudou.doutaoproduct.vo.Catelog2Vo;
@@ -73,7 +74,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * 建立父子关系
-     * //todo: 二级分类进行排序报空指针
      * @param children
      */
     private void setChildren(List<CategoryVo> children, List<CategoryEntity> categoryEntities) {
@@ -109,7 +109,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Override
     public void removeMenuByIds(List<Long> asList) {
-        // TODO: 2019/8/30 删除分类前先判断是否有关联的商品
+        //  删除分类前先判断是否有关联的商品
+        List<CategoryBrandRelationEntity> categoryBrandRelation =
+                categoryBrandRelationService.list(new QueryWrapper<CategoryBrandRelationEntity>().in("catelog_id", asList));
+
+        if (categoryBrandRelation.size() == 0) {
+            //逻辑删除
+            baseMapper.deleteBatchIds(asList);
+        } else {
+            throw new RuntimeException("该菜单下面还有属性，无法删除!");
+        }
 
         baseMapper.deleteBatchIds(asList);
     }

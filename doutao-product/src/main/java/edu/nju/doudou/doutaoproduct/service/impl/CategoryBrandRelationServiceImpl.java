@@ -6,6 +6,7 @@ import edu.nju.doudou.doutaoproduct.dao.CategoryDao;
 import edu.nju.doudou.doutaoproduct.entity.BrandEntity;
 import edu.nju.doudou.doutaoproduct.entity.CategoryEntity;
 import edu.nju.doudou.doutaoproduct.service.BrandService;
+import edu.nju.doudou.doutaoproduct.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     @Autowired
     private BrandDao brandDao;
+
     @Autowired
     private CategoryDao categoryDao;
 

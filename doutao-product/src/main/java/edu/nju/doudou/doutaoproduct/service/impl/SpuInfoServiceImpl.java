@@ -103,7 +103,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         infoEntity.setUpdateTime(new Date());
         this.saveBaseSpuInfo(infoEntity);
 
-        //2、保存Spu的描述图片 pms_spu_info_desc
+        //2、保存Spu的描述信息 pms_spu_info_desc
         List<String> decript = vo.getDecript();
         SpuInfoDescEntity descEntity = new SpuInfoDescEntity();
         descEntity.setSpuId(infoEntity.getId());
@@ -258,16 +258,12 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         //查出当前sku的所有可以被用来检索的规格属性
         List<ProductAttrValueEntity> baseAttrs = productAttrValueService.baseAttrlistforspu(spuId);
 
-        List<Long> attrIds = baseAttrs.stream().map(attr -> {
-            return attr.getAttrId();
-        }).collect(Collectors.toList());
+        List<Long> attrIds = baseAttrs.stream().map(attr -> attr.getAttrId()).collect(Collectors.toList());
         List<Long> searchAttrIds = attrService.selectSearchAttrs(attrIds);
         //转换为Set集合
         Set<Long> idSet = searchAttrIds.stream().collect(Collectors.toSet());
 
-        List<SkuEsModel.Attrs> attrsList = baseAttrs.stream().filter(item -> {
-            return idSet.contains(item.getAttrId());
-        }).map(item -> {
+        List<SkuEsModel.Attrs> attrsList = baseAttrs.stream().filter(item -> idSet.contains(item.getAttrId())).map(item -> {
             SkuEsModel.Attrs attrs = new SkuEsModel.Attrs();
             BeanUtils.copyProperties(item, attrs);
             return attrs;

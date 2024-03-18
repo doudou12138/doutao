@@ -49,7 +49,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
             //同步更新其他关联表中的数据
             categoryBrandRelationService.updateBrand(brand.getBrandId(),brand.getName());
 
-            //TODO 更新其他关联
+            // 更新其他关联
         }
     }
 
